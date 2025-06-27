@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: BabelRorah/k8s
+  repository: tylerrorah/k8s
   tag: latest
   pullPolicy: IfNotPresent
 
