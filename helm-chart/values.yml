@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  repository: your-dockerhub-username/fastapi-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+env:
+  RESPONSE: "it works!"
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: []
