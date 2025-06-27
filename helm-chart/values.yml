@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: your-dockerhub-username/fastapi-app
+  repository: BabelRorah/k8s_eval
   tag: latest
   pullPolicy: IfNotPresent
 
