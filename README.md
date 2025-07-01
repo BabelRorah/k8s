@@ -51,9 +51,15 @@ that will be your decoded api key you will use to test the endpoint
 
 ---------------------
 Test the endpoint
+
+for powershell
+Invoke-RestMethod -Uri 'http://localhost:8000/test' -Headers @{ 'X-Key' = '8FedndALMzO72nrLlHP9AZLxDfqTPlMT' }
+
+for wsl
 curl -H "X-Key: <your-api-key>" http://localhost:8000/test
-(Replace your <your-api-key> with the actual api key)
-you should get
+(Replace your <your-api-key> with the actual api key)\
+
+both responses should be
 {
   "response": "it works!"
 }
