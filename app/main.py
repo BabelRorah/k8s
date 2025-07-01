@@ -4,7 +4,7 @@ from starlette.status import HTTP_403_FORBIDDEN
 import os
 
 API_KEY = os.getenv("API_KEY")
-print(API_KEY)  # For debugging only, remove in production
+print("Loaded API_KEY:", API_KEY)  # For debugging only, remove in production
 
 API_KEY_NAME = "X-Key"  # Header name, keep consistent case
 

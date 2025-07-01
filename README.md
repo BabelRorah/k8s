@@ -38,11 +38,16 @@ helm install fastapi ./helm-chart
 
 ---------------------
 Port-forward the service 
-kubectl port-forward svc/fastapi-fastapi 8000:8000
+kubectl port-forward svc/fastapi-app-fastapi 8000:8000
 
 ---------------------
 Retrieve the API key
-kubectl get secret fastapi-fastapi -o jsonpath="{.data.api_key}" | base64 -d
+kubectl get secret fastapi-app-fastapi -o yaml
+
+copy the api key and run this in powershell
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("replace this with the api key you got to decode"))
+you should get something like this 8FedndALMzO72nrLlHP9AZLxDfqTPlMT
+that will be your decoded api key you will use to test the endpoint
 
 ---------------------
 Test the endpoint
