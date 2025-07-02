@@ -1,4 +1,4 @@
-FastAPI Test App — Helm & Kubernetes
+# FastAPI Test App — Helm & Kubernetes
 
 This project is a simple FastAPI application designed for deployment in a Kubernetes cluster using Helm. It includes:
 
@@ -10,7 +10,7 @@ This project is a simple FastAPI application designed for deployment in a Kubern
 
 ---------------------
 
-Requirements
+### Requirements
 
 - [Python 3.11](https://www.python.org/)
 - [Docker](https://www.docker.com/)
@@ -20,50 +20,72 @@ Requirements
 
 ---------------------
 
-Clone this repository
+### Clone this repository
 
-```bash
+```powershell
 git clone https://github.com/BabelRorah/k8s
-cd k8s_eval
+cd k8s
+```
+### Run Minikube(or your preferred k8s distribution)
 
----------------------
-Run Minikube(or your preferred k8s distribution)
+```powershell
 minikube start
 kubectl get pods
+```
 (if this works then minikube is working properly)
 
 ---------------------
-Install the helm
+### Install the Helm
+
+```powershell
 helm install fastapi ./helm-chart
+```
 
 ---------------------
-Port-forward the service 
+### Port-forward the service
+
+```powershell
 kubectl port-forward svc/fastapi-app-fastapi 8000:8000
+```
+tip: you will need to keep that terminal open(port forwarding takes control), just open up an additional one to move forward
 
 ---------------------
-Retrieve the API key
+### Retrieve the API key
+
+```powershell
 kubectl get secret fastapi-app-fastapi -o yaml
-
+```
 copy the api key and run this in powershell
+```powershell
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("replace this with the api key you got to decode"))
-you should get something like this 8FedndALMzO72nrLlHP9AZLxDfqTPlMT
-that will be your decoded api key you will use to test the endpoint
+```
+you should get the decoded version of the api-key used to test the endpoint
 
+For WSL
+```bash
+echo "<put-your-api-key>" | base64 -d
+```
 ---------------------
-Test the endpoint
+### Test the endpoint
 
-for powershell
-Invoke-RestMethod -Uri 'http://localhost:8000/test' -Headers @{ 'X-Key' = '8FedndALMzO72nrLlHP9AZLxDfqTPlMT' }
+For Powershell
+```powershell
+Invoke-RestMethod -Uri 'http://localhost:8000/test' -Headers @{ 'X-Key' = '<your-api-key>' }
+```
 
-for wsl
+For WSL
+```bash
 curl -H "X-Key: <your-api-key>" http://localhost:8000/test
-(Replace your <your-api-key> with the actual api key)\
+```
 
-both responses should be
+you should get
+```powershell
 {
   "response": "it works!"
 }
-
+```
 ----------------------
-Uninstall
+### Uninstall
+```powershell
 helm uninstall fastapi
+```
