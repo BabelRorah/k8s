@@ -8,7 +8,7 @@ This project is a simple FastAPI application designed for deployment in a Kubern
 - Configurable response and API key via environment variables
 - Deployable via a Helm chart with dynamic secret generation
 
----------------------
+---
 
 ### Requirements
 
@@ -18,7 +18,7 @@ This project is a simple FastAPI application designed for deployment in a Kubern
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - A running Kubernetes cluster (e.g., Minikube)
 
----------------------
+---
 
 ### Clone this repository
 
@@ -34,14 +34,14 @@ kubectl get pods
 ```
 (if this works then minikube is working properly)
 
----------------------
+---
 ### Install the Helm
 
 ```powershell
 helm install fastapi ./helm-chart
 ```
 
----------------------
+---
 ### Port-forward the service
 
 ```powershell
@@ -49,7 +49,7 @@ kubectl port-forward svc/fastapi-app-fastapi 8000:8000
 ```
 tip: you will need to keep that terminal open(port forwarding takes control), just open up an additional one to move forward
 
----------------------
+---
 ### Retrieve the API key
 
 ```powershell
@@ -65,7 +65,7 @@ For WSL
 ```bash
 echo "<put-your-api-key>" | base64 -d
 ```
----------------------
+---
 ### Test the endpoint
 
 For Powershell
@@ -84,7 +84,7 @@ you should get
   "response": "it works!"
 }
 ```
-----------------------
+----
 ### Uninstall
 ```powershell
 helm uninstall fastapi
